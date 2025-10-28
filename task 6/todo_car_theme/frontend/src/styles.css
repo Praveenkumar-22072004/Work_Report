@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Car theme backgrounds and accents */
+body { background: linear-gradient(180deg, #0f172a 0%, #071024 100%); color: white; }
+.header-logo { display:flex; gap:12px; align-items:center; }
+.card { background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border-radius: 12px; padding: 1rem; box-shadow: 0 6px 18px rgba(2,6,23,0.6); }
+.button-car { background: linear-gradient(90deg,#0ea5e9,#c53030); padding: 0.5rem 1rem; border-radius: 8px; color: white; font-weight:600; }
+.brand-accent { color: #0ea5e9; font-weight:700; }

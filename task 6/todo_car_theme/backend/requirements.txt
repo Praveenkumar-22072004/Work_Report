@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+sqlmodel
+email-validator
+Jinja2
+python-multipart
+psycopg2-binary

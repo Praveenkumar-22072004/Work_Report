@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Team Manager{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
+    <a href="/welcome">Welcome</a>
+    <a href="/add-member">Add Member</a>
+    <a href="/members">Members</a>
+    <a href="/logout">Logout</a>
+  </nav>
+  <main>
+    {% block body %}{% endblock %}
+  </main>
+</body>
+</html>

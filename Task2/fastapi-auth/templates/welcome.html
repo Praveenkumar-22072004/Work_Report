@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+
+{% block body %}
+<section class="card">
+  <h2>🎉 Welcome, {{ user }}</h2>
+
+  {% if google_user %}
+    <div class="google-profile">
+      <img src="{{ google_user['picture'] }}" alt="Profile Picture" class="profile-pic" />
+      <p><strong>Name:</strong> {{ google_user['name'] }}</p>
+      <p><strong>Email:</strong> {{ google_user['email'] }}</p>
+    </div>
+  {% endif %}
+
+  <div class="buttons">
+    <a href="/add-member" class="btn">➕ Add Member</a>
+    <a href="/members" class="btn">👥 View Members</a>
+    <a href="/logout" class="btn">🚪 Logout</a>
+  </div>
+</section>
+
+<style>
+.google-profile {
+  margin-top: 15px;
+  text-align: center;
+}
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid #ddd;
+}
+</style>
+{% endblock %}

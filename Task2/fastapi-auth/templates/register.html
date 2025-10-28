@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<section class="card">
+  <h2>📝 Register</h2>
+
+  {% if error %}
+    <p style="color:red;">{{ error }}</p>
+  {% endif %}
+
+  <form method="post" action="/register">
+    <label for="username">Username</label>
+    <input type="text" name="username" required />
+
+    <label for="email">Email</label>
+    <input type="email" name="email" required />
+
+    <label for="password">Password</label>
+    <input type="password" name="password" required />
+
+    <div class="buttons">
+      <button type="submit" class="btn">Register</button>
+    </div>
+  </form>
+
+  <hr />
+
+  <!-- Google Register/Login Button -->
+  <div class="buttons">
+    <a href="/login/google" class="btn google-btn">Continue with Google</a>
+  </div>
+
+  <p>Already have an account? <a href="/login">Login</a></p>
+</section>
+
+<style>
+.google-btn {
+  background: #4285F4;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 10px;
+}
+.google-btn:hover {
+  background: #357ae8;
+}
+</style>
+{% endblock %}

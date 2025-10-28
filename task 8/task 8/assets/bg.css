@@ -1,0 +1,19 @@
+/* Custom background and chat bubbles */
+body {
+    background: linear-gradient(135deg, #141e30, #243b55);
+    color: white;
+}
+
+.stChatMessage.user {
+    background: #1abc9c !important;
+    color: white !important;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.stChatMessage.assistant {
+    background: #34495e !important;
+    color: #ecf0f1 !important;
+    border-radius: 12px;
+    padding: 8px;
+}

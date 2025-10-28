@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Members{% endblock %}
+
+{% block body %}
+<section class="card">
+  <h2>📋 Team Members</h2>
+  <ul>
+    {% for member in members %}
+      <li>{{ member.name }} — {{ member.role }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

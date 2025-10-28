@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Add Member</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container" role="main">
+    <h1>Add Member</h1>
+    {% if error %}<div class="error" role="alert">{{ error }}</div>{% endif %}
+    <form method="post" action="/add-member">
+      <div class="form-row"><label for="name">Name</label><input id="name" name="name" type="text" required></div>
+      <div class="form-row"><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+      <div class="form-row"><label for="phone">Phone</label><input id="phone" name="phone" type="text" required></div>
+      <div class="form-row"><label for="organization">Organization</label><input id="organization" name="organization" type="text" required></div>
+      <div class="form-row"><button type="submit">Submit</button></div>
+    </form>
+    <p style="text-align:center;" class="small"><a href="/welcome">Back to Welcome</a></p>
+  </div>
+</body>
+</html>

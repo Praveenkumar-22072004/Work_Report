@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Register</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container" role="main">
+    <h1>Create account</h1>
+
+    {% if error %}<div class="error" role="alert">{{ error }}</div>{% endif %}
+    {% if message %}<div class="success">{{ message }}</div>{% endif %}
+
+    <form id="registerForm" method="post" action="/register" novalidate>
+      <div class="form-row">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required aria-required="true" autocomplete="username">
+      </div>
+
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required aria-required="true" autocomplete="email">
+        <div class="small" id="emailHelp" aria-live="polite"></div>
+      </div>
+
+      <div class="form-row">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required aria-required="true" autocomplete="new-password" aria-describedby="pwdPolicy">
+      </div>
+
+      <ul class="policy" id="pwdPolicy" aria-live="polite">
+        <li id="rule-length" class="bad">Minimum 6 characters</li>
+        <li id="rule-upper" class="bad">At least one uppercase letter</li>
+        <li id="rule-symbol" class="bad">At least one symbol (e.g. !@#$%)</li>
+      </ul>
+
+      <div class="form-row">
+        <label for="confirm_password">Confirm password</label>
+        <input id="confirm_password" name="confirm_password" type="password" required aria-required="true" autocomplete="new-password">
+        <div id="matchHelp" class="small" aria-live="polite"></div>
+      </div>
+
+      <div class="form-row">
+        <button id="submitBtn" type="submit" disabled>Create account</button>
+      </div>
+    </form>
+
+    <p style="text-align:center;" class="small">Already have an account? <a href="/login">Sign in</a></p>
+  </div>
+
+<script>
+(function(){
+  const pwd = document.getElementById('password');
+  const confirmPwd = document.getElementById('confirm_password');
+  const submitBtn = document.getElementById('submitBtn');
+  const ruleLength = document.getElementById('rule-length');
+  const ruleUpper = document.getElementById('rule-upper');
+  const ruleSymbol = document.getElementById('rule-symbol');
+  const matchHelp = document.getElementById('matchHelp');
+  const email = document.getElementById('email');
+
+  const policy = /^(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{6,}$/;
+
+  function update() {
+    const value = pwd.value || '';
+    // rules
+    if (value.length >= 6) { ruleLength.className='ok'; } else { ruleLength.className='bad'; }
+    if (/[A-Z]/.test(value)) { ruleUpper.className='ok'; } else { ruleUpper.className='bad'; }
+    if (/[^A-Za-z0-9]/.test(value)) { ruleSymbol.className='ok'; } else { ruleSymbol.className='bad'; }
+
+    // match
+    if (confirmPwd.value.length > 0) {
+      if (value === confirmPwd.value) {
+        matchHelp.textContent = 'Passwords match';
+        matchHelp.style.color = '#198754';
+      } else {
+        matchHelp.textContent = 'Passwords do not match';
+        matchHelp.style.color = '#dc3545';
+      }
+    } else {
+      matchHelp.textContent = '';
+    }
+
+    // email quick check
+    const emailVal = email.value || '';
+    const emailOk = emailVal.includes('@') && emailVal.includes('.');
+    document.getElementById('emailHelp').textContent = emailVal ? (emailOk ? '' : 'Looks like an invalid email') : '';
+
+    // enable submit only when everything ok
+    const allOk = policy.test(value) && (value === confirmPwd.value) && emailOk && document.getElementById('username').value.trim().length > 0;
+    submitBtn.disabled = !allOk;
+  }
+
+  pwd.addEventListener('input', update);
+  confirmPwd.addEventListener('input', update);
+  email.addEventListener('input', update);
+  document.getElementById('username').addEventListener('input', update);
+
+  // prevent client submission when JS not present will still be blocked server side
+})();
+</script>
+</body>
+</html>
