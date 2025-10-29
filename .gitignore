@@ -5,3 +5,9 @@ venv/
 __pycache__/
 *.pyc
 node_modules/
+
+# Ignore environment files
+.env
+**/.env
+*.env
+**/*.env
